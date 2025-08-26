@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gislaine & Lobga — Wedding (Yaoundé, Cameroon)</title>
+<meta name="description" content="Wedding website for Gislaine & Lobga — RSVP, events, video, gallery and QR tickets for check-in." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- EmailJS SDK (add your Public Key below) -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){ emailjs.init("1wBRmRSODjiDiDLSK"); })(); /* ← replace */
+</script>
+
+<style>
+/* ===== Blush & Gold Theme (single-file) ===== */
+:root{
+  --blush:#F6D7D9;
+  --blush-600:#E8A7AF;
+  --gold:#C5A052;
+  --ink:#2A2A2A;
+  --paper:#ffffff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);scroll-behavior:smooth}
+a{color:inherit}
+.container{max-width:1080px;margin:0 auto;padding:0 1rem}
+
+/* Header / Nav */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #eee}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+.logo{font-weight:700;letter-spacing:.02em;text-decoration:none}
+.nav ul{list-style:none;display:flex;gap:.6rem;margin:0;padding:0}
+.nav a{display:inline-block;text-decoration:none;padding:.55rem .85rem;border-radius:.7rem}
+.nav a:hover,.nav a.active{background:var(--blush)}
+.mobile-only{display:none}
+@media (max-width:820px){ .mobile-only{display:inline-block} .nav ul{display:none} }
+
+/* Hero */
+.hero{background:linear-gradient(180deg, var(--blush) 0%, #fff 65%)}
+.hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;padding:4rem 0}
+.hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(2.2rem,5vw,4rem);margin:.2rem 0}
+.tag{display:inline-block;background:rgba(197,160,82,.1);color:var(--gold);border:1px solid rgba(197,160,82,.3);padding:.35rem .7rem;border-radius:999px;font-weight:600;letter-spacing:.03em}
+.cta{display:flex;gap:.8rem;margin-top:1rem}
+.btn{display:inline-block;background:var(--gold);color:#fff;padding:.8rem 1.1rem;border-radius:.8rem;text-decoration:none;font-weight:600}
+.btn.outline{background:transparent;color:var(--gold);border:2px solid var(--gold)}
+.hero img{width:100%;height:100%;object-fit:cover;border-radius:1.2rem;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+@media (max-width:900px){ .hero-inner{grid-template-columns:1fr} }
+
+/* Sections */
+section{padding:3rem 0}
+.section-title{font-family:"Playfair Display",Georgia,serif;font-size:2rem;margin:.2rem 0 1rem}
+.meta{color:#555}
+
+/* Cards / grids */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.card{border:1px solid #eee;border-radius:1rem;padding:1rem;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.04)}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem}
+.gallery-grid img{width:100%;height:230px;object-fit:cover;border-radius:.8rem}
+
+/* Video */
+.ratio{position:relative;width:100%;padding-bottom:56.25%}
+.ratio iframe,.ratio video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:1rem}
+
+/* RSVP form */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form .full{grid-column:1 / -1}
+.input, textarea{width:100%;padding:.8rem 1rem;border:1px solid #e5e5e5;border-radius:.8rem}
+textarea{min-height:110px;resize:vertical}
+.submit{background:var(--gold);color:#fff;border:none;border-radius:.8rem;padding:.9rem 1.1rem;font-weight:700}
+@media (max-width:720px){ .form{grid-template-columns:1fr} }
+
+/* Ticket / Check-in results */
+.ticket{border:1px dashed var(--gold);padding:1rem;border-radius:1rem;background:linear-gradient(180deg,#fff, #fffaf2)}
+.ticket h3{margin:.2rem 0}
+.ticket small{color:#666}
+
+/* FAQ accordion */
+.faq-item{border-bottom:1px solid #eee}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;cursor:pointer}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#555}
+
+/* Footer */
+footer{border-top:1px solid #eee;padding:2rem 0;background:#fff;color:#666;font-size:.95rem;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ===================== Header ===================== -->
+<header>
+  <nav class="container nav">
+    <a class="logo" href="#home">Gislaine&nbsp;&amp;&nbsp;Lobga</a>
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#checkin">Check-in</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn mobile-only" href="#rsvp">RSVP</a>
+  </nav>
+</header>
+
+<!-- ===================== Hero ===================== -->
+<section id="home" class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="tag">Yaoundé, Cameroon</span>
+      <h1>Gislaine &amp; Lobga</h1>
+      <p class="meta">Join us for our celebrations: <strong>27 Dec</strong> (Traditional), <strong>31 Dec</strong> (Customary), and <strong>3 Jan</strong> (White Wedding).</p>
+      <div class="cta">
+        <a class="btn" href="#rsvp">RSVP Now</a>
+        <a class="btn outline" href="#events">See Events</a>
+      </div>
+      <p style="margin-top:1rem;color:#555">Next up in <strong data-countdown="2025-12-27T14:00:00">—</strong></p>
+    </div>
+    <!-- Keep your image path; note that forward slashes work best on the web -->
+    <img src="\images\couple1.jpg" alt="Couple cover" />
+  </div>
+</section>
+
+<!-- ===================== Our Story ===================== -->
+<section id="story">
+  <div class="container">
+    <h2 class="section-title">Our Love Story</h2>
+    <p class="meta">We met in Yaoundé, and the rest is history. Family, faith, and laughter brought us here—ready to celebrate with you.</p>
+    <div class="gallery-grid" style="margin-top:1rem">
+      <img src="\images\couple2.jpg" alt="Story 1">
+      <img src="\images\couple3.jpg" alt="Story 2">
+      <img src="\images\couple4.jpg" alt="Story 3">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Events ===================== -->
+<section id="events">
+  <div class="container">
+    <h2 class="section-title">Wedding Events</h2>
+    <div class="card-grid">
+      <article class="card">
+        <h3>Traditional Wedding</h3>
+        <p class="meta"><strong>Date:</strong> 27 December • <strong>Time:</strong> 2:00 PM</p>
+        <p class="meta"><strong>Location:</strong> Yaoundé, Cameroon</p>
+        <a class="btn outline" href="https://maps.google.com/?q=Yaound%C3%A9%2C%20Cameroon" target="_blank" rel="noreferrer">Open Map</a>
+      </article>
+      <article class="card">
+        <h3>Customary Wedding</h3>
+        <p class="meta"><strong>Date:</strong> 31 December • <strong>Time:</strong> 10:00 AM</p>
+        <p class="meta"><strong>Location:</strong> Yaoundé, Cameroon</p>
+        <a class="btn outline" href="https://maps.google.com/?q=Yaound%C3%A9%2C%20Cameroon" target="_blank" rel="noreferrer">Open Map</a>
+      </article>
+      <article class="card">
+        <h3>White Wedding</h3>
+        <p class="meta"><strong>Date:</strong> 3 January • <strong>Time:</strong> 11:00 AM</p>
+        <p class="meta"><strong>Location:</strong> Yaoundé, Cameroon</p>
+        <a class="btn outline" href="https://maps.google.com/?q=Yaound%C3%A9%2C%20Cameroon" target="_blank" rel="noreferrer">Open Map</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Video ===================== -->
+<section id="video">
+  <div class="container">
+    <h2 class="section-title">Our Video</h2>
+    <div class="ratio">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/peavgZDrr3A?si=dVeG-zkTzSA_a9yo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RSVP (creates ticket + QR) ===================== -->
+<section id="rsvp">
+  <div class="container">
+    <h2 class="section-title">RSVP</h2>
+    <p class="meta">Please RSVP below. You’ll receive a ticket with a QR code on this page and we’ll also email it to you.</p>
+
+    <form id="rsvpForm" class="form" autocomplete="on">
+      <div class="full">
+        <label>Full Name</label>
+        <input class="input" name="name" required />
+      </div>
+      <div>
+        <label>Email</label>
+        <input class="input" type="email" name="email" placeholder="you@example.com" />
+      </div>
+      <div>
+        <label>Phone</label>
+        <input class="input" name="phone" placeholder="+237..." />
+      </div>
+      <div>
+        <label>Number of Guests</label>
+        <input class="input" type="number" name="guests" min="1" max="10" value="1" required />
+      </div>
+      <div class="full">
+        <label>Notes (dietary, accessibility, etc.)</label>
+        <textarea name="notes" class="input"></textarea>
+      </div>
+      <div class="full">
+        <button class="submit" type="submit">Send RSVP & Generate QR</button>
+      </div>
+    </form>
+
+    <div id="ticketArea" style="display:none;margin-top:1.2rem" class="ticket">
+      <h3>Your Wedding Pass</h3>
+      <p><small>Show this at the entrance to check in.</small></p>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+        <img id="qrImg" alt="QR code" style="width:220px;height:220px;border:1px solid #eee;border-radius:.6rem" />
+        <div>
+          <div><strong>Name:</strong> <span id="tName"></span></div>
+          <div><strong>Ticket ID:</strong> <span id="tId"></span></div>
+          <div><strong>Check-in link:</strong> <a id="tLink" href="#" target="_blank" rel="noreferrer">Open</a></div>
+          <div style="margin-top:.7rem;display:flex;gap:.6rem;flex-wrap:wrap">
+            <a id="downloadQr" class="btn outline" download="wedding-ticket-qr.png">Download QR</a>
+            <a id="emailQr" class="btn" href="#">Email me the link</a>
+          </div>
+        </div>
+      </div>
+      <p id="emailStatus" class="meta" style="margin-top:.6rem;"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq">
+  <div class="container">
+    <h2 class="section-title">FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q"><strong>What should I wear?</strong><span>+</span></div>
+      <div class="faq-a"><p>Dressy/formal. Cultural attire is welcome for the Traditional and Customary events.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><strong>Can I bring a plus one?</strong><span>+</span></div>
+      <div class="faq-a"><p>Please RSVP with the correct number of guests so we can plan seating and catering.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><strong>How do I RSVP?</strong><span>+</span></div>
+      <div class="faq-a"><p>Use the RSVP form above. You’ll immediately receive a ticket ID and QR link on this page.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Gallery ===================== -->
+<section id="gallery">
+  <div class="container">
+    <h2 class="section-title">Guest Photo Gallery</h2>
+    <p class="meta">After the celebrations, please add your photos and feel free to download your favorites.</p>
+    <div class="cta" style="margin:.6rem 0 1.2rem">
+      <a class="btn" target="_blank" rel="noreferrer" href="https://photos.app.goo.gl/YOUR-ALBUM-SHARE">Upload Your Photos</a>
+      <a class="btn outline" target="_blank" rel="noreferrer" href="https://photos.app.goo.gl/YOUR-ALBUM-SHARE">Open Album</a>
+    </div>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" alt="Highlight 1">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" alt="Highlight 2">
+      <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?q=80&w=800&auto=format&fit=crop" alt="Highlight 3">
+      <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop" alt="Highlight 4">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Check-in (reads ?ticket=) ===================== -->
+<section id="checkin">
+  <div class="container">
+    <h2 class="section-title">Check-in</h2>
+    <p class="meta">Ushers: scan a guest’s QR. This page will mark the ticket as checked in (only once per ticket).</p>
+    <div id="checkinResult" class="ticket" style="display:none;margin-top:1rem"></div>
+  </div>
+</section>
+
+<!-- ===================== Contact ===================== -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p class="meta">Questions? Call or WhatsApp the planning team.</p>
+    <div class="card-grid">
+      <div class="card">
+        <strong>Planner</strong>
+        <p class="meta">+237 600 000 000<br/>planner@example.com</p>
+      </div>
+      <div class="card">
+        <strong>Venue Area</strong>
+        <p class="meta"><a href="https://maps.google.com/?q=Yaound%C3%A9%2C%20Cameroon" target="_blank" rel="noreferrer">Yaoundé, Cameroon</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  With love from Yaoundé • Theme: Blush &amp; Gold
+</footer>
+
+<script>
+/* ===== Small JS to power nav highlights, countdown, RSVP → ticket+QR, email, and check-in ===== */
+
+// Active link highlight
+(function() {
+  const links = document.querySelectorAll('header .nav a[href^="#"]');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const onScroll = () => {
+    const y = window.scrollY + 80;
+    let active = links[0];
+    sections.forEach((sec, i) => { if (sec.offsetTop <= y) active = links[i]; });
+    links.forEach(a => a.classList.remove('active'));
+    if (active) active.classList.add('active');
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+// Countdown to first event
+(function setupCountdown(){
+  const el = document.querySelector('[data-countdown]');
+  if(!el) return;
+  const target = new Date(el.dataset.countdown);
+  function tick(){
+    const diff = target - new Date();
+    if(diff<=0){ el.textContent = 'Today!'; return; }
+    const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000);
+    el.textContent = `${d} days ${h} hrs`;
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click', ()=>{
+    const open = a.style.maxHeight && a.style.maxHeight !== '0px';
+    a.style.maxHeight = open ? '0px' : (a.scrollHeight+'px');
+  });
+});
+
+// --- RSVP → generate ticket & QR (stored locally) ---
+const form = document.getElementById('rsvpForm');
+const ticketArea = document.getElementById('ticketArea');
+const qrImg = document.getElementById('qrImg');
+const tName = document.getElementById('tName');
+const tId = document.getElementById('tId');
+const tLink = document.getElementById('tLink');
+const downloadQr = document.getElementById('downloadQr');
+const emailQr = document.getElementById('emailQr');
+const emailStatus = document.getElementById('emailStatus');
+
+// Local "database" using localStorage for demo
+const DB_KEY = 'weddingTickets';
+
+function saveTicket(ticket){
+  const list = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+  list.push(ticket);
+  localStorage.setItem(DB_KEY, JSON.stringify(list));
+}
+function markCheckedIn(ticketId){
+  const list = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+  const found = list.find(t => t.id === ticketId);
+  if (found) { found.status = 'CHECKED_IN'; found.checkinTime = new Date().toISOString(); }
+  localStorage.setItem(DB_KEY, JSON.stringify(list));
+}
+function getTicket(ticketId){
+  const list = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+  return list.find(t => t.id === ticketId) || null;
+}
+
+function uid() {
+  return 'GL-' + Math.random().toString(36).slice(2,10).toUpperCase();
+}
+
+// === EmailJS config & helper ===
+const EMAILJS_SERVICE_ID = "service_qrebmec";   // ← replace
+const EMAILJS_TEMPLATE_ID = "template_y0zjfl9"; // ← replace
+async function sendTicketEmail({toEmail, toName, ticketId, checkinHref, qrUrl}) {
+  if (!toEmail) return { ok: false, reason: "no email" };
+  try {
+    const res = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      {
+        to_email: toEmail,
+        to_name: toName || "Guest",
+        ticket_id: ticketId,
+        checkin_url: checkinHref,
+        qr_url: qrUrl,
+        events_text:
+          "Traditional — 27 Dec • 2:00 PM\n" +
+          "Customary — 31 Dec • 10:00 AM\n" +
+          "White Wedding — 3 Jan • 11:00 AM"
+      }
+    );
+    return { ok: true, res };
+  } catch (e) {
+    console.error("EmailJS error:", e);
+    return { ok: false, reason: e?.text || "Email failed" };
+  }
+}
+
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form).entries());
+  const id = uid();
+  const checkinUrl = new URL(location.href);
+  checkinUrl.searchParams.set('ticket', id);
+
+  const qrUrl = 'https://quickchart.io/qr?size=320&text=' + encodeURIComponent(checkinUrl.href);
+
+  // Save locally (demo). For production, send to your backend or Google Form.
+  const ticket = {
+    id, name: data.name || 'Guest', email: data.email || '', phone: data.phone || '',
+    guests: Number(data.guests||1), notes: data.notes || '',
+    status: 'PENDING', checkinTime: null
+  };
+  saveTicket(ticket);
+
+  // Show ticket
+  ticketArea.style.display = 'block';
+  qrImg.src = qrUrl;
+  tName.textContent = ticket.name;
+  tId.textContent = id;
+  tLink.href = checkinUrl.href;
+  tLink.textContent = 'Open';
+
+  // Download link -> directly the QR image (works on most browsers)
+  downloadQr.href = qrUrl;
+
+  // Mailto (backup/manual)
+  const body = encodeURIComponent(
+`Your wedding ticket for Gislaine & Lobga
+
+Ticket ID: ${id}
+Check-in link: ${checkinUrl.href}
+
+Show the QR at the entrance. See you soon!`
+  );
+  emailQr.href = `mailto:${encodeURIComponent(ticket.email||'')}?subject=${encodeURIComponent('Your Wedding Pass (QR)')}&body=${body}`;
+
+  // === Send email automatically via EmailJS ===
+  emailStatus.textContent = 'Sending your ticket to your email...';
+  const result = await sendTicketEmail({
+    toEmail: ticket.email,
+    toName: ticket.name,
+    ticketId: id,
+    checkinHref: checkinUrl.href,
+    qrUrl
+  });
+  if (result.ok) {
+    emailStatus.textContent = '✅ We emailed your QR ticket!';
+  } else if (ticket.email) {
+    emailStatus.textContent = '⚠️ Email failed. You can still download the QR above.';
+  } else {
+    emailStatus.textContent = 'Add your email to receive the ticket in your inbox.';
+  }
+
+  // Scroll to ticket
+  ticketArea.scrollIntoView({ behavior:'smooth', block:'start' });
+});
+
+// --- Check-in: read ?ticket= from URL and mark used (local demo) ---
+(function(){
+  const params = new URLSearchParams(location.search);
+  const tick = params.get('ticket');
+  if (!tick) return;
+
+  const box = document.getElementById('checkinResult');
+  box.style.display = 'block';
+
+  const found = getTicket(tick);
+  if (!found){
+    box.innerHTML = `<h3>Ticket not found</h3><p>Please contact the ushers.</p>`;
+    return;
+  }
+  if (found.status === 'CHECKED_IN'){
+    const when = new Date(found.checkinTime).toLocaleString();
+    box.innerHTML = `<h3 style="color:#b45309">Already checked in</h3><p>Ticket <strong>${found.id}</strong> was checked in at ${when}.</p>`;
+  } else {
+    markCheckedIn(tick);
+    box.innerHTML = `<h3 style="color:#15803d">✓ Check-in successful</h3><p>Welcome, <strong>${found.name}</strong>!<br/>Ticket <strong>${found.id}</strong> marked as checked in.</p>`;
+  }
+})();
+</script>
+</body>
+</html>
